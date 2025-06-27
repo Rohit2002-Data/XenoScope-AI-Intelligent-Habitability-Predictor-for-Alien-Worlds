@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 from fetch_nasa import get_exoplanet_data
 
 st.set_page_config(page_title="XenoScope AI", page_icon="🪐")
