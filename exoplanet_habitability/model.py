@@ -22,9 +22,6 @@ def train_and_save_model():
     model.fit(X_train, y_train)
 
     # Save model
-    joblib.dump(model, "habitability_model.pkl")
-    print("✅ Model trained and saved as 'habitability_model.pkl'.")
-
     # ✅ TESTING
     print("\n🧪 Testing Results:")
     y_pred = model.predict(X_test)
