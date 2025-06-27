@@ -4,9 +4,6 @@ import pandas as pd
 import joblib
 from fetch_nasa import get_exoplanet_data
 
-# Load model
-model = joblib.load("habitability_model.pkl")
-
 st.title("🪐 Exoplanet Habitability Predictor")
 st.markdown("Predict whether an exoplanet could be habitable based on its features.")
 
