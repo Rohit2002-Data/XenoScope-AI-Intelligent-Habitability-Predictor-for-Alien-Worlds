@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -54,23 +53,31 @@ with st.expander("📈 Test Model on Testing Dataset"):
 option = st.radio("🔍 Choose input method:", ["Manual Entry", "Select from NASA live data"])
 
 if option == "Manual Entry":
-    inputs = []
     st.subheader("🧪 Enter Planet Features")
+    inputs = []
 
     if st.button("🧬 Simulate Earth-like Planet"):
         inputs = [365.25, 1.0, 1.0, 5778, 288, 1.0, 1.0]
         st.success("✅ Earth-like values prefilled!")
+        st.markdown("### 🌍 Input Values")
+        for name, val in zip(features, inputs):
+            st.markdown(f"- **{name}**: `{val}`")
+
+        if st.button("🔮 Predict"):
+            pred = model.predict([inputs])[0]
+            st.success("✅ Habitable 🌍" if pred else "❌ Not Habitable 🪐")
+
     else:
         for feat in features:
             value = st.number_input(f"Enter {feat}:", min_value=0.0)
             inputs.append(value)
 
-    if st.button("🔮 Predict"):
-        if len(inputs) == len(features):
+        if st.button("🔮 Predict"):
+            st.markdown("### 📥 Input Values")
+            for name, val in zip(features, inputs):
+                st.markdown(f"- **{name}**: `{val}`")
             pred = model.predict([inputs])[0]
             st.success("✅ Habitable 🌍" if pred else "❌ Not Habitable 🪐")
-        else:
-            st.error("❌ Please fill all input values.")
 
 else:
     st.subheader("🔭 Select from NASA Live Exoplanets")
